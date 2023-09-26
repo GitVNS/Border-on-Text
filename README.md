@@ -1,3 +1,6 @@
-# border_on_text
+# Border for Text
 
-A new Flutter project.
+Border for text in Flutter.
+
+## Sample
+![](https://github.com/GitVNS/Border-on-Text/blob/main/sample/sample.gif)
