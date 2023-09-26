@@ -27,12 +27,12 @@ class BorderTextExample extends StatefulWidget {
 class _BorderTextExampleState extends State<BorderTextExample> {
   String text = '';
 
-  List<double> strokeSizes = [1, 3, 7, 10];
+  List<double> strokeSizes = [2, 5, 7, 10];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff2b2d42),
+      backgroundColor: const Color(0xfffca311),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -47,15 +47,17 @@ class _BorderTextExampleState extends State<BorderTextExample> {
                     text,
                     style: GoogleFonts.delius(
                       fontSize: 50,
+                      fontWeight: FontWeight.bold,
                       foreground: Paint()
                         ..style = PaintingStyle.stroke
                         ..strokeWidth = strokeSize
-                        ..color = const Color(0xffedf2f4),
+                        ..color = const Color(0xffffffff),
                     ),
                   ),
                   Text(
                     text,
                     style: GoogleFonts.delius(
+                      fontWeight: FontWeight.bold,
                       color: const Color(0xff000000),
                       fontSize: 50,
                     ),
@@ -73,6 +75,7 @@ class _BorderTextExampleState extends State<BorderTextExample> {
                 cursorColor: Colors.white,
                 style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
+                  filled: true,
                   hintText: "Enter text",
                   hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
                   focusColor: Colors.white,
