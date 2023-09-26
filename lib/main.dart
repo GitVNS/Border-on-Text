@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,10 +11,78 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+      debugShowCheckedModeBanner: false,
+      home: BorderTextExample(),
+    );
+  }
+}
+
+class BorderTextExample extends StatefulWidget {
+  const BorderTextExample({super.key});
+
+  @override
+  State<BorderTextExample> createState() => _BorderTextExampleState();
+}
+
+class _BorderTextExampleState extends State<BorderTextExample> {
+  String text = '';
+
+  List<double> strokeSizes = [1, 3, 7, 10];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xff2b2d42),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (double strokeSize in strokeSizes)
+            Padding(
+              padding: EdgeInsets.all(10 + strokeSize),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Text(
+                    text,
+                    style: GoogleFonts.delius(
+                      fontSize: 50,
+                      foreground: Paint()
+                        ..style = PaintingStyle.stroke
+                        ..strokeWidth = strokeSize
+                        ..color = const Color(0xffedf2f4),
+                    ),
+                  ),
+                  Text(
+                    text,
+                    style: GoogleFonts.delius(
+                      color: const Color(0xff000000),
+                      fontSize: 50,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: Theme(
+              data: ThemeData(
+                  colorScheme: ColorScheme.fromSeed(seedColor: Colors.red)),
+              child: TextField(
+                onChanged: (value) => setState(() => text = value),
+                cursorColor: Colors.white,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: "Enter text",
+                  hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                  focusColor: Colors.white,
+                  border: const OutlineInputBorder(),
+                  fillColor: Colors.black12,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
